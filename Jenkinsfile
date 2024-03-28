@@ -12,9 +12,7 @@ pipeline {
         stage('running test') {
             steps {
                 withAllureUpload(name: '${JOB_BASE_NAME} - #${BUILD_NUMBER}', results: [[path: 'build/allure-results']], projectId: '6702', serverId: 'testing', silent: true,  tags: 'defects') {
-                sh '''
-                    python -m pytest --alluredir allure-results
-                '''
+                sh 'python -m pytest --alluredir allure-results'
             }
         }
     }
